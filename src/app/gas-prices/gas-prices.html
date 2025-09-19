@@ -1,15 +1,13 @@
-<table>
-  <tr>
-    <th>
-      @for (state of STATES; track state.id) {
-        <app-state-check [state]="state" (enable)="addId($event)" (disable)="subId($event)"></app-state-check>
-      }
-    </th>
-    <th>
-      <button matButton="filled" (click)="getGasStations()">Los!</button>
-    </th>
-  </tr>
-</table>
+@for (state of STATES; track state.id) {
+  <app-state-check [state]="state" (enable)="addId($event)" (disable)="subId($event)"></app-state-check>
+}
+<mat-divider></mat-divider>
+<mat-radio-group [(ngModel)]="fuelType">
+  <mat-radio-button [value]="'DIE'">Diesel</mat-radio-button>
+  <mat-radio-button [value]="'GAS'">Benzin</mat-radio-button>
+  <mat-radio-button [value]="'SUP'">Super</mat-radio-button>
+</mat-radio-group>
+<button matButton="filled" (click)="getGasStations()">Los!</button>
 <mat-divider></mat-divider>
 <mat-list>
   @for (item of gasStations(); track item.id) {

@@ -8,6 +8,9 @@ import {MatFormField} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
 import {MatTable} from '@angular/material/table';
 import {StateCheck} from './state-check/state-check';
+import {lastValueFrom} from 'rxjs';
+import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-gas-prices',
@@ -19,6 +22,9 @@ import {StateCheck} from './state-check/state-check';
     MatListItemLine,
     MatButton,
     StateCheck,
+    MatRadioGroup,
+    MatRadioButton,
+    FormsModule,
   ],
   templateUrl: './gas-prices.html',
   styleUrl: './gas-prices.scss'
@@ -28,25 +34,35 @@ export class GasPrices {
   gasStations = signal<GasStationDTO[]>([]);
   code = signal('9');
   selectedIds = signal<string[]>([]);
-  fuelType: string = 'DIE';
+  fuelType: string = "DIE";
   includeClosed: string = 'true';
   type: string = 'BL';
-  protected readonly STATES = STATES;
+  protected readonly STATES = STATES.reverse();
 
   constructor() {
     this.getGasStations()
   }
 
-  getGasStations(): void {
+  async getGasStations(): Promise<void> {
+    const values:GasStationDTO[] = [];
     for(let id of this.selectedIds()){
-      this.gasPrices.displayCheapest(id, this.fuelType, this.includeClosed, this.type).subscribe((data) => {
-        const values = [];
-        for(const item of data){
-          values.push(item);
-        }
-        this.gasStations.set(values);
-      })
+      const data = await lastValueFrom(
+        this.gasPrices.displayCheapest(
+          id,
+          this.fuelType,
+          this.includeClosed,
+          this.type
+        )
+      );
+      for(let d of data){
+        values.push(d);
+      }
     }
+    console.log(values)
+    values.sort((a, b) =>
+      a.prices[0].amount - b.prices[0].amount
+    );
+    this.gasStations.set(values);
   }
 
   addId(id: string){
