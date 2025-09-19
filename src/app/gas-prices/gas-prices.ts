@@ -1,16 +1,15 @@
 import {Component, inject, signal} from '@angular/core';
 import {GasPricesApi} from './gas-prices-api';
 import {MatDivider, MatList, MatListItem, MatListItemLine, MatListItemTitle} from '@angular/material/list';
-import {MatCheckbox} from '@angular/material/checkbox';
 import {GasStationDTO} from '../dto/GasStationDTO';
 import {STATES} from '../data/States';
-import {MatFormField} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
-import {MatTable} from '@angular/material/table';
 import {StateCheck} from './state-check/state-check';
 import {lastValueFrom} from 'rxjs';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
+import {MatGridList, MatGridTile} from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-gas-prices',
@@ -25,6 +24,13 @@ import {FormsModule} from '@angular/forms';
     MatRadioGroup,
     MatRadioButton,
     FormsModule,
+    MatCard,
+    MatCardContent,
+    MatCardTitle,
+    MatCardSubtitle,
+    MatCardHeader,
+    MatGridList,
+    MatGridTile,
   ],
   templateUrl: './gas-prices.html',
   styleUrl: './gas-prices.scss'
