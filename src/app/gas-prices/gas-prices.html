@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <th>
+      @for (state of STATES; track state.id) {
+        <app-state-check [state]="state" (enable)="addId($event)" (disable)="subId($event)"></app-state-check>
+      }
+    </th>
+    <th>
+      <button matButton="filled" (click)="getGasStations()">Los!</button>
+    </th>
+  </tr>
+</table>
+<mat-divider></mat-divider>
+<mat-list>
+  @for (item of gasStations(); track item.id) {
+    <mat-list-item>
+      <span matListItemTitle>{{ item.name }}</span>
+      <span matListItemLine>{{ item.location.city }} {{ item.location.postalCode }}, {{ item.location.address }}</span>
+      <span matListItemLine>
+        @for (price of item.prices; track price.fuelType) {
+          {{ price.fuelType }}: {{ price.amount }} €
+        }
+      </span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  }
+</mat-list>
