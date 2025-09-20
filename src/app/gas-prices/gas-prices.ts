@@ -29,6 +29,7 @@ import {GasStationList} from './gas-station-list/gas-station-list';
     GasStationList,
   ],
   templateUrl: './gas-prices.html',
+  standalone: true,
   styleUrl: './gas-prices.scss'
 })
 export class GasPrices {

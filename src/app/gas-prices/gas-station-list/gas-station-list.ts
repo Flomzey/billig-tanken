@@ -13,6 +13,7 @@ import {MatList, MatListItem, MatListItemLine, MatListItemTitle} from '@angular/
     MatListItemTitle
   ],
   templateUrl: './gas-station-list.html',
+  standalone: true,
   styleUrl: './gas-station-list.scss'
 })
 export class GasStationList {

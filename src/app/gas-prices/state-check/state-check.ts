@@ -8,6 +8,7 @@ import {MatCheckbox} from '@angular/material/checkbox';
     MatCheckbox
   ],
   templateUrl: './state-check.html',
+  standalone: true,
   styleUrl: './state-check.scss'
 })
 export class StateCheck {
