@@ -1,1 +1,14 @@
-<p>gas-station-list works!</p>
+<mat-list>
+  @for (item of gasStations(); track item.id) {
+    <mat-list-item>
+      <span matListItemTitle>{{ item.name }}</span>
+      <span matListItemLine>{{ item.location.city }} {{ item.location.postalCode }}, {{ item.location.address }}</span>
+      <span matListItemLine>
+        @for (price of item.prices; track price.fuelType) {
+          {{ price.label }}: {{ price.amount }} €
+        }
+      </span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  }
+</mat-list>

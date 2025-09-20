@@ -8,24 +8,4 @@
   <mat-radio-button [value]="'SUP'">Super</mat-radio-button>
 </mat-radio-group>
 <button matButton="filled" (click)="getGasStations()">Los!</button>
-<mat-grid-list cols="3" width="100%">
-  <mat-grid-tile colspan="1"></mat-grid-tile>
-  <mat-grid-tile colspan="1">
-    <div class="scroll-container">
-      <mat-list>
-        @for (item of gasStations(); track item.id) {
-          <mat-list-item>
-            <span matListItemTitle>{{ item.name }}</span>
-            <span matListItemLine>{{ item.location.city }} {{ item.location.postalCode }}, {{ item.location.address }}</span>
-            <span matListItemLine>
-        @for (price of item.prices; track price.fuelType) {
-          {{ price.fuelType }}: {{ price.amount }} €
-        }
-      </span>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        }
-      </mat-list>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
+<app-gas-station-list [gasStations]="gasStations()"></app-gas-station-list>

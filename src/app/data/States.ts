@@ -128,9 +128,9 @@ export const STATES: State[] = [
   {
     id: '8', name: 'Vorarlberg', politicalDistricts: [
       {id: '01', name: 'Bludenz'},
-      {id: '01', name: 'Bregenz'},
-      {id: '01', name: 'Dornbirn'},
-      {id: '01', name: 'FeldKirch'}
+      {id: '02', name: 'Bregenz'},
+      {id: '03', name: 'Dornbirn'},
+      {id: '04', name: 'FeldKirch'}
     ]
   },
   {

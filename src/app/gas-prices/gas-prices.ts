@@ -8,8 +8,8 @@ import {StateCheck} from './state-check/state-check';
 import {lastValueFrom} from 'rxjs';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
-import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {MatGridList, MatGridTile} from '@angular/material/grid-list';
+import {GasStationList} from './gas-station-list/gas-station-list';
 
 @Component({
   selector: 'app-gas-prices',
@@ -24,13 +24,9 @@ import {MatGridList, MatGridTile} from '@angular/material/grid-list';
     MatRadioGroup,
     MatRadioButton,
     FormsModule,
-    MatCard,
-    MatCardContent,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatCardHeader,
     MatGridList,
     MatGridTile,
+    GasStationList,
   ],
   templateUrl: './gas-prices.html',
   styleUrl: './gas-prices.scss'
