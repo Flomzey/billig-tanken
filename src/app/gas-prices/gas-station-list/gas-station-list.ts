@@ -1,7 +1,11 @@
-import {Component, input} from '@angular/core';
+import {Component, input, signal} from '@angular/core';
 import {GasStationDTO} from '../../dto/GasStationDTO';
 import {MatDivider} from '@angular/material/divider';
 import {MatList, MatListItem, MatListItemLine, MatListItemTitle} from '@angular/material/list';
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
+import {MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription} from '@angular/material/expansion';
+import {NgOptimizedImage} from '@angular/common';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-gas-station-list',
@@ -10,7 +14,19 @@ import {MatList, MatListItem, MatListItemLine, MatListItemTitle} from '@angular/
     MatList,
     MatListItem,
     MatListItemLine,
-    MatListItemTitle
+    MatListItemTitle,
+    MatCard,
+    MatCardHeader,
+    MatCardSubtitle,
+    MatCardContent,
+    MatCardTitle,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+    MatExpansionPanelDescription,
+    NgOptimizedImage,
+    MatIcon,
   ],
   templateUrl: './gas-station-list.html',
   standalone: true,
