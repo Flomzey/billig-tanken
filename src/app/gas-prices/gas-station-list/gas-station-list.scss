@@ -1,28 +1,101 @@
-.gas-station-description{
+.description {
+  width: 100%;
   color: gray;
 }
 
-.title-table{
+.description-price {
+  text-align: left;
+}
+
+.description-address {
+  width: 60%;
+}
+
+.title-table {
   text-align: center;
 }
 
-.icon{
-  border-radius: 20%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
+.title {
+  padding-left: 10px;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  border-radius: 20%;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #dddddd;
+  border: 3px solid #e5e5e5;
   color: black;
 }
 
-.gold{
-  color: gold;
+.gold {
+  background-color: gold;
+  border: 3px solid #ffe77f;
+  color: black;
 }
 
-.silver{
-  color: silver;
+.silver {
+  background-color: silver;
+  border: 3px solid #d6d6d6;
+  color: black;
 }
 
-.bronze{
-  color: peru;
+.bronze {
+  background-color: peru;
+  border: 3px solid #e9ad76;
+  color: black;
+}
+
+.list-content{
+  display: flex;
+  align-items: stretch;
+}
+
+.expanded-content-side-line{
+  width: 3px;
+  background-color: gray;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+/*hide side line for smaller devices*/
+@media (max-width: 450px){
+  .expanded-content-side-line{
+    display: none;
+  }
+}
+
+.expanded-content-table {
+  display: flex;
+  max-width: 350px;
+  min-width: 280px;
+  width: 100%;
+  padding: 10px;
+}
+
+.expanded-content-table td {
+  width: 50%;
+}
+
+.content-right{
+  text-align: center;
+}
+
+.check-icon {
+  color: green;
+}
+
+.cross-icon {
+  color: red;
+}
+
+.description-heading {
+  font-size: medium;
+  font-weight: bold;
 }

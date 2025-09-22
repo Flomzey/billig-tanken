@@ -1,27 +1,151 @@
-@for (item of gasStations(); track item.id; let i = $index) {
+@for (station of gasStations(); track station.id; let i = $index) {
   <mat-accordion multi>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <table class="title-table">
             <tr>
-              <td class="title-icon">
-                <mat-icon class="icon">{{i+1}}</mat-icon>
-              </td>
               <td>
-                {{ item.name }}
+                @switch (i) {
+                  @case (0) {
+                    <div class="icon gold">{{ i + 1 }}</div>
+                  }
+                  @case (1) {
+                    <div class="icon silver">{{ i + 1 }}</div>
+                  }
+                  @case (2) {
+                    <div class="icon bronze">{{ i + 1 }}</div>
+                  }
+                  @default {
+                    <div class="icon">{{ i + 1 }}</div>
+                  }
+                }
+              </td>
+              <td class="title">
+                {{ station.name }}
               </td>
             </tr>
           </table>
         </mat-panel-title>
-        <mat-panel-description class="gas-station-description">{{ item.location.city }} {{ item.location.postalCode }}, {{ item.location.address }}</mat-panel-description>
+        <mat-panel-description>
+          <table class="description">
+            <tr>
+              <td class="description-address">
+                {{ station.location.city }}
+                {{ station.location.postalCode }}
+                , {{ station.location.address }}
+              </td>
+              <td class="description-price">
+                @for (price of station.prices; track price.fuelType) {
+                  {{ price.label }}: {{ price.amount }} €
+                }
+              </td>
+            </tr>
+          </table>
+        </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>{{ item.location.city }} {{ item.location.postalCode }}, {{ item.location.address }}</p>
-      <p>
-        @for (price of item.prices; track price.fuelType) {
-          {{ price.label }}: {{ price.amount }} €
-        }
-      </p>
+      <div class="list-content">
+        <div class="expanded-content-side-line"></div>
+        <mat-card class="expanded-content-table">
+          <table>
+            <tr>
+              <td class="description-heading">Öffnungszeiten</td>
+            </tr>
+            @for (dayInf of station.openingHours; track dayInf.day) {
+              <tr>
+                <td>{{ dayInf.label }}:</td>
+                @if(dayInf.from === dayInf.to){
+                  <td class="content-right">Geschlossen</td>
+                }@else{
+                  <td class="content-right">{{ dayInf.from }} - {{ dayInf.to }}</td>
+                }
+              </tr>
+            }
+          </table>
+          <mat-divider></mat-divider>
+          <table>
+            <tr>
+              <td class="description-heading" colspan="2">Zahlungsmöglichkeiten:</td>
+            </tr>
+            <tr>
+              <td>Bar: </td>
+              <td class="content-right">
+                @if (station.paymentMethods.cash) {
+                  <mat-icon fontIcon="check_circle" class="check-icon"></mat-icon>
+                } @else {
+                  <mat-icon fontIcon="cancel" class="cross-icon"></mat-icon>
+                }
+              </td>
+            </tr>
+            <tr>
+              <td>Debitkarte: </td>
+              <td class="content-right">
+                @if (station.paymentMethods.debitCard) {
+                  <mat-icon fontIcon="check_circle" class="check-icon"></mat-icon>
+                } @else {
+                  <mat-icon fontIcon="cancel" class="cross-icon"></mat-icon>
+                }
+              </td>
+            </tr>
+            <tr>
+              <td>Kreditkarte: </td>
+              <td class="content-right">
+                @if (station.paymentMethods.creditCard) {
+                  <mat-icon fontIcon="check_circle" class="check-icon"></mat-icon>
+                } @else {
+                  <mat-icon fontIcon="cancel" class="cross-icon"></mat-icon>
+                }
+              </td>
+            </tr>
+            <tr>
+              <td>Andere: </td>
+              <td>
+                {{station.paymentMethods.others}}
+              </td>
+            </tr>
+          </table>
+          <mat-divider></mat-divider>
+          <table>
+            <tr>
+              <td class="description-heading" colspan="2">Zusätzliche Informationen:</td>
+            </tr>
+            <tr>
+              <td>Bedienung:</td>
+              <td class="content-right">
+                @if (station.offerInformation.service) {
+                  <mat-icon fontIcon="check_circle" class="check-icon"></mat-icon>
+                } @else {
+                  <mat-icon fontIcon="cancel" class="cross-icon"></mat-icon>
+                }
+              </td>
+            </tr>
+            <tr>
+              <td>Selbstbedienung:</td>
+              <td class="content-right">
+                @if (station.offerInformation.selfService) {
+                  <mat-icon fontIcon="check_circle" class="check-icon"></mat-icon>
+                } @else {
+                  <mat-icon fontIcon="cancel" class="cross-icon"></mat-icon>
+                }
+              </td>
+            </tr>
+            <tr>
+              <td>Personal:</td>
+              <td class="content-right">
+                @if (station.offerInformation.unattended) {
+                  <mat-icon fontIcon="check_circle" class="check-icon"></mat-icon>
+                } @else {
+                  <mat-icon fontIcon="cancel" class="cross-icon"></mat-icon>
+                }
+              </td>
+            </tr>
+            <tr>
+              <td>Sonstiges: </td>
+              <td>{{station.otherServiceOffers}}</td>
+            </tr>
+          </table>
+        </mat-card>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 }

@@ -16,7 +16,7 @@ export interface GasStationDTO {
     {
       day: string
       label: string
-      order: 1
+      order: number
       from: string
       to: string
     }
