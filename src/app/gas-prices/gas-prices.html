@@ -1,7 +1,7 @@
-<mat-grid-list cols="4" rowHeight="100px">
+<mat-grid-list cols="5" rowHeight="100px" class="main-grid">
   <mat-grid-tile
-  [colspan]="2"
-  [rowspan]="1">
+    [colspan]="3"
+    [rowspan]="1">
     <div class="check-tile">
       @for (state of STATES; track state.id) {
         <app-state-check [state]="state" (enable)="addId($event)" (disable)="subId($event)"></app-state-check>
@@ -9,8 +9,8 @@
     </div>
   </mat-grid-tile>
   <mat-grid-tile
-  [colspan]="1"
-  [rowspan]="1">
+    [colspan]="1"
+    [rowspan]="1">
     <mat-radio-group [(ngModel)]="fuelType">
       <mat-radio-button [value]="'DIE'">Diesel</mat-radio-button>
       <mat-radio-button [value]="'GAS'">Benzin</mat-radio-button>
@@ -18,9 +18,16 @@
     </mat-radio-group>
   </mat-grid-tile>
   <mat-grid-tile
-  [colspan]="1"
-  [rowspan]="1">
+    colspan="1"
+    rowspan="1">
     <button matButton="filled" (click)="getGasStations()">Los!</button>
   </mat-grid-tile>
 </mat-grid-list>
-<app-gas-station-list [gasStations]="gasStations()"></app-gas-station-list>
+
+<div class="main-grid">
+  <div class="side-tile"></div>
+  <div class="center-tile">
+    <app-gas-station-list [gasStations]="gasStations()"></app-gas-station-list>
+  </div>
+  <div class="side-tile"></div>
+</div>

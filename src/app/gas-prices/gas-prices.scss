@@ -1,11 +1,20 @@
 .main-grid{
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
+  display: flex;
+  width: 100%
 }
 
-.check-tile{
-  white-space: normal;
-  position: absolute;
-  left: 0;
+.center-tile{
+  max-height: 100%;
+  width: 1100px;
+  min-width: 320px;
+  overflow-y: auto;
+  flex-shrink: 1;
+  flex-grow: 0;
+}
+
+.side-tile{
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 0;
 }

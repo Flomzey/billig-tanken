@@ -14,11 +14,6 @@ import {GasStationList} from './gas-station-list/gas-station-list';
 @Component({
   selector: 'app-gas-prices',
   imports: [
-    MatList,
-    MatListItem,
-    MatDivider,
-    MatListItemTitle,
-    MatListItemLine,
     MatButton,
     StateCheck,
     MatRadioGroup,
@@ -47,7 +42,7 @@ export class GasPrices {
   }
 
   async getGasStations(): Promise<void> {
-    const values:GasStationDTO[] = [];
+    let values:GasStationDTO[] = [];
     for(let id of this.selectedIds()){
       const data = await lastValueFrom(
         this.gasPrices.displayCheapest(
@@ -65,7 +60,28 @@ export class GasPrices {
     values.sort((a, b) =>
       a.prices[0].amount - b.prices[0].amount
     );
+    values = this.correctPosition(values);
     this.gasStations.set(values);
+  }
+
+  correctPosition(values: GasStationDTO[]):GasStationDTO[]{
+    let last = null;
+    let i : number = 1;
+    for(const current of values){
+      if(last === null){
+        last = current;
+        current.position = i;
+        continue;
+      }
+      if(last.prices[0].amount === current.prices[0].amount){
+        last = current;
+        current.position = i;
+      }else{
+        last = current;
+        current.position = ++i;
+      }
+    }
+    return values;
   }
 
   addId(id: string){
